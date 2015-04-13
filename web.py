@@ -3,23 +3,27 @@ import re
 import os
 from bs4 import BeautifulSoup, SoupStrainer
 
-f = urllib2.urlopen("https://www.google.com")
-s = f.read()
+# Function to parse webpage
+def parse_webpage() :
+    f = urllib2.urlopen("https://www.google.com")
+    s = f.read()
+    f.close
+    return s
 
+# Function to write data to a file
+def save_webpage() :
+    # Write data to a temp files
+    ff = open("temp.html", "w")
+    ff.write(s)
 
-# Write data to a temp files
-ff = open("temp.html", "w")
-ff.write(s)
-
-# to get only 'a' tag of the page
-soup = BeautifulSoup(s)
-for tag in soup.find_all('a'):
- #tag['href'] = urlparse.urljoin(url, tag['href'])
- print tag
-
-# finding links on a page with 're' package
-# links = re.findall('"((http|ftp)s?://.*?)"', s)
-# print links
-
-f.close
-os.remove("temp.html")
+# Function to get all links from current page
+def get_all_links_from_webpage() :
+    # get the webpage to collect all the links on it
+    
+    # to get only 'a' tag of the page
+    soup = BeautifulSoup(parse_webpage())
+    for tag in soup.find_all('a'):
+        print tag
+    
+# Deleting the temp file
+#os.remove("temp.html")
