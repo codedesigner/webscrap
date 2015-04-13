@@ -12,11 +12,14 @@ ff = open("temp.html", "w")
 ff.write(s)
 
 # to get only 'a' tag of the page
-# soup = BeautifulSoup(f)
-# print soup.find_all('a')
+soup = BeautifulSoup(s)
+for tag in soup.find_all('a'):
+ #tag['href'] = urlparse.urljoin(url, tag['href'])
+ print tag
 
-links = re.findall('"((http|ftp)s?://.*?)"', s)
-print links
+# finding links on a page with 're' package
+# links = re.findall('"((http|ftp)s?://.*?)"', s)
+# print links
 
 f.close
 os.remove("temp.html")
